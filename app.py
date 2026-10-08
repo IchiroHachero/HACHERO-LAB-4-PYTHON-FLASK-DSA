@@ -3,9 +3,86 @@
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
+#link list operation
+class LinkedListNode:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+class CustomLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def add_at_beginning(self, value):
+        new_node = LinkedListNode(value)
+        new_node.next = self.head
+        self.head = new_node
+
+    def add_at_end(self, value):
+        new_node = LinkedListNode(value)
+        if not self.head:
+            self.head = new_node
+            return
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = new_node
+
+    def delete_at_beginning(self):
+        if self.head:
+            self.head = self.head.next
+
+    def delete_at_end(self):
+        if not self.head:
+            return
+        if not self.head.next:
+            self.head = None
+            return
+        current = self.head
+        while current.next.next:
+            current = current.next
+        current.next = None
+
+    def to_list(self):
+        nodes = []
+        current = self.head
+        while current:
+            nodes.append(current.value)
+            current = current.next
+        return nodes
 
 
-# Linked List
+linked_list_demo = CustomLinkedList()
+
+#link list rute
+@app.route('/works/linked-list', methods=['GET', 'POST'])
+def linked_list_page():
+    message = ""
+    if request.method == 'POST':
+        action = request.form.get('action')
+        value = request.form.get('value', '').strip()
+
+        if action == 'add_bg':
+            if value:
+                linked_list_demo.add_at_beginning(value)
+                message = f"Added '{value}' at beginning."
+        elif action == 'add_end':
+            if value:
+                linked_list_demo.add_at_end(value)
+                message = f"Added '{value}' at end."
+        elif action == 'del_bg':
+            linked_list_demo.delete_at_beginning()
+            message = "Deleted node from beginning."
+        elif action == 'del_end':
+            linked_list_demo.delete_at_end()
+            message = "Deleted node from end."
+
+    return render_template(
+        'linked_list.html',
+        nodes=linked_list_demo.to_list(),
+        message=message
+    )
+#Linked list
 class Node:
     def __init__(self, location, status):
         self.location = location
@@ -60,13 +137,13 @@ def profile():
     return render_template('profile.html')
 
 
-# WORKS MENU (GET only)
+#Works
 @app.route('/works')
 def works():
     return render_template('works.html')
 
 
-# TO UPPERCASE ROUTE
+#To Uppercase
 @app.route('/works/uppercase', methods=['GET', 'POST'])
 def touppercase():
     result = None

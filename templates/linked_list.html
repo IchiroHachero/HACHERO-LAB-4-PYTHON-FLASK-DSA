@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+    <title>Linked List Operations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/works">Works</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <h1>LINKED LIST OPERATIONS</h1>
+
+    <div class="ll-workspace">
+        <div class="ll-left-panel">
+            <h3>Controls</h3>
+            <form action="/works/linked-list" method="POST">
+                <label for="value">Value:</label><br>
+                <input type="text" id="value" name="value" placeholder="Enter node value"><br><br>
+
+                <button type="submit" name="action" value="add_bg">Add at Beginning</button>
+                <button type="submit" name="action" value="add_end">Add at End</button><br>
+                <button type="submit" name="action" value="del_bg">Delete at Beginning</button>
+                <button type="submit" name="action" value="del_end">Delete at End</button>
+            </form>
+
+            {% if message %}
+                <p class="ll-msg">{{ message }}</p>
+            {% endif %}
+        </div>
+
+        <div class="ll-right-panel">
+            <h3>Output Display</h3>
+            <div class="ll-display">
+                {% if nodes %}
+                    <div class="node-chain">
+                        {% for node in nodes %}
+                            <span class="ll-node">[ {{ node }} ]</span>
+                            {% if not loop.last %}
+                                <span class="ll-arrow">➔</span>
+                            {% endif %}
+                        {% endfor %}
+                        <span class="ll-arrow">➔</span>
+                        <span class="ll-null">NULL</span>
+                    </div>
+                {% else %}
+                    <p><em>List is currently EMPTY (HEAD ➔ NULL)</em></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <a href="/works">Back to Works</a>
+
+</body>
+</html>
