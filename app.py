@@ -5,7 +5,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
-# --- LINKED LIST FOR HISTORY LOGS ---
+# Linked List
 class Node:
     def __init__(self, location, status):
         self.location = location
@@ -49,7 +49,7 @@ class SuspensionHistory:
 history_ll = SuspensionHistory(max_size=5)
 
 
-# --- ROUTES ---
+
 @app.route('/')
 def index():
     return render_template('index.html')
