@@ -1,11 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Profile Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Ichiro Hachero</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Welcome to your Profile Page</h1>
-    <p>This is a simple profile page rendered using Flask's templating.</p>
-    <p>Create your profile here with Name, section , course, subject and display your favorite sayings or motto! using html tags </p>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/works">Works</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="profile-container">
+        <!-- Left Side: Profile Image -->
+        <div class="profile-image-box">
+            <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Profile Image" class="profile-img">
+        </div>
+
+        <!-- Right Side: About Me Details -->
+        <div class="profile-info">
+            <h1>ABOUT ME</h1>
+            <p><strong>Name:</strong> Ichiro Hachero</p>
+            <p><strong>Course & Section:</strong> BSCPE 2-1</p>
+            <p><strong>Bio:</strong>Mayor of Biringan City. Authored Librong James. CEO of Dark Web </p>
+        </div>
+    </div>
+
+    <br>
+    <a href="/">Back to Home</a>
+
 </body>
 </html>

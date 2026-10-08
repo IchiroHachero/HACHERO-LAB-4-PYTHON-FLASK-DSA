@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class Suspension Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="suspension-body">
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/works">Works</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="suspension-container">
+        <h1>CLASS SUSPENSION DETECTOR</h1>
+
+        <form action="/works/suspension-checker" method="POST">
+            <label for="location">Enter City/Location:</label><br>
+            <input type="text" id="location" name="location" placeholder="Example: Manila" value="{{ location }}" required><br><br>
+            <button type="submit">Check Status</button>
+        </form>
+
+        {% if location %}
+            <div class="status-result">
+                <h3>Location: {{ location }}</h3>
+                <h2 class="status-text">{{ status }}</h2>
+            </div>
+        {% endif %}
+
+        {% if history %}
+            <div class="history-box">
+                <h3>History:</h3>
+                <ul>
+                    {% for item in history %}
+                        <li><strong>{{ item.location }}</strong>: {{ item.status }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+    <br>
+    <a href="/works">Back to Works</a>
+
+</body>
+</html>

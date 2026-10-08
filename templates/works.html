@@ -1,28 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home Page</title>
+    <meta charset="UTF-8">
+    <title>My Works</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Welcome to my website</h1>
 
     <nav>
         <ul>
+            <li><a href="/">Home</a></li>
             <li><a href="/profile">Profile</a></li>
             <li><a href="/works">Works</a></li>
             <li><a href="/contact">Contact</a></li>
         </ul>
     </nav>
 
-    <h1>Also Check out</h1>
+    <h1>MY PROGRAMMING WORKS</h1>
+    <p>Select a project below to launch the tool:</p>
 
+    <!-- Side-by-Side Work Buttons -->
     <div class="works-container">
-        <!-- FIXED PATH BELOW -->
-        <a href="/works/uppercase" class="work-btn">toUpperCase</a>
+        <a href="/works/uppercase" class="work-btn">To Upper Case</a>
         <a href="/works/area/circle" class="work-btn">Area of a Circle</a>
         <a href="/works/area/triangle" class="work-btn">Area of a Triangle</a>
         <a href="/works/suspension-checker" class="work-btn">Class Suspension Detector</a>
     </div>
+
+    <br><br>
+    <a href="/">Back to Home</a>
+
 </body>
 </html>
